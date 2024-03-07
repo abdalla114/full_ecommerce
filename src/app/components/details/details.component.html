@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row pt-5 mt-3 align-items-center g-3">
+        <div class="col-sm-4">
+            <owl-carousel-o [options]="customOptions">
+
+                <ng-container *ngFor="let slide of productDetails.images">
+                  <ng-template carouselSlide>
+                    <img [src]="slide"  [title]="productDetails.title">
+                  </ng-template>
+                </ng-container>
+            
+              </owl-carousel-o>
+        </div>
+        <div class="col-sm-8">
+            <div>
+               <h2 class="fw-semibold pb-2">{{productDetails.title}}</h2>
+               <h6 class="text-muted">{{productDetails.description}}</h6>
+               <h6 class="pt-3 pb-2 fw-semibold">Category : {{productDetails.category.name}}</h6>
+               <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="price">{{productDetails.price}} EGP</span>
+                <div class="px-3">
+                    <i class="fa-solid fa-star rating-color"></i>
+                    <span class="text-muted">4.8</span>
+                </div>
+               </div> 
+               <button #add class="w-100 main-btn mt-4" (click)="addToCart(productDetails._id,add)">Add to Cart <i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="flex-column top-0 start-0 bottom-0 end-0 fixed-layer d-flex justify-content-center align-items-center position-fixed" *ngIf="loading">
+    <div class="layer-img"><img src="./assets/freshcart-logo.svg" alt=""></div>
+    <div class="loader mt-5"></div>
+  </div> -->

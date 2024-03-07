@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row g-3 position-relative pt-5 mt-3 justify-content-center" *ngIf=" listProducts.length>0 else name">
+    <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let item of listProducts">
+      <div class="product p-2" style="cursor: pointer;" [routerLink]="['/details',item._id]">
+        <div class="d-flex justify-content-end heart"><i class="fa-regular fa-trash-can text-danger fa-xl"(click)="delFromCart(item._id);handleBtn($event);"></i></div>
+          <img [src]="item.imageCover" class="w-100" alt="" [title]="">
+          <h4 class="imp-text">{{item.category.name}}</h4>
+          <div class="d-flex justify-content-between align-items-center"><h5 class="h6 fw-semibold">{{item.title |trim:2}}</h5>
+          </div>
+          <div class="raing d-flex justify-content-between">
+              <span class="fw-semibold">{{item.price}} EGP</span>
+              <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-star rating-color"></i>
+                  <span class="text-muted">{{item.ratingsAverage}}</span>
+              </div> 
+          </div>
+          <button class="main-btn w-100 mt-2" (click)="handleBtn($event);addtoCart(item.id,addBtn)"#addBtn>Add to Card <i class="fa-solid fa-cart-plus"></i></button>
+          <!-- <button class="delete-btn w-100 mt-2" (click)="delFromCart(item._id,remBtn);handleBtn($event)"  #remBtn>Delete <i class="fa-solid fa-trash-can"></i></button> -->
+      </div>
+    </div>
+  </div>
+</div>
+  <ng-template #name>
+    <h2 class="text-center">There is No Data</h2>
+  </ng-template>
+  

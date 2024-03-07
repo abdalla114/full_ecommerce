@@ -1,0 +1,66 @@
+
+<section class="pt-5">
+    <form action="" [formGroup]="loginForm" class="bg-main rounded-3 p-4 mt-5" (ngSubmit)="handleLogin()">
+        <p class="alert alert-danger" *ngIf="errorMsg.length > 0">{{errorMsg}}</p>
+        <h2>Login Now :</h2>
+    <div class="mt-5">
+        <label for="email">email :</label>
+        <input type="email" id="email" class="form-control w-100 mt-2" formControlName="email">
+    </div>
+    <div class="mt-3">
+        <label for="password">password :</label>
+        <div class="position-relative"><input #input [type]="inputtype()" id="password" class="form-control w-100 mt-2" formControlName="password">
+          <i (click)="eyetoggle();"  class="fa-regular fa-eye position-absolute translate-middle-y top-50 eye-open" *ngIf="eye == true"></i>
+           <i class="fa-regular fa-eye-slash position-absolute translate-middle-y top-50 eye-open" (click)="eyetoggle();"*ngIf="eye == false"></i>
+        </div>
+        
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+        <button type="button" class="btn forget-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <span class="forget" id="forget">Forget Password?</span>
+          </button>
+        <button type="submit" [disabled]="loginForm.get('email')?.value == '' || loginForm.get('password')?.value == '' " class="main-btn">Login <i class="fa-solid fa-spinner fa-spin-pulse" *ngIf="isLoading"></i></button></div>
+    </form>
+    <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Forget Password Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="showform1 = false ;showform2 =false  "></button>
+        </div>
+        <div class="modal-body overflow-hidden">
+          <form action="" [formGroup]="forgetPassword"  (ngSubmit)="handleForgetPassword()">
+            <p class="alert alert-danger" *ngIf="emailExist">{{errormsgg}}</p>
+            <label for="mail">Enter your Email : </label>
+            <input formControlName="email" type="email" id="mail" class="form-control mt-3">
+            <p class="text-success mt-1">{{validmail}}</p>
+            <p class="text-danger mt-1" *ngIf="forgetPassword.get('email')?.getError('email')">Enter a valid email</p>
+            <div class="d-flex justify-content-end mt-2"><button [disabled]="forgetPassword.invalid || forgetPassword.get('email')?.value == ''" class="main-btn" type="submit">Send verification Code <i *ngIf="loading" class="fa-solid fa-spinner fa-spin-pulse"></i></button></div>
+        </form>
+        <form action="" [formGroup]="verify" class="mt-3" [ngClass]="{'reshow':showform1 == true ,'second-form':showform1 == false}" (ngSubmit)="handleVerifaction()">
+            <input type="text" class="form-control" formControlName="resetCode" placeholder="Enter a valid Code" name="" id="">
+            <p class="text-success mt-1" *ngIf="validCode">{{validcodemsg}}</p>
+            <p class="text-danger mt-1" *ngIf="invalidCode">{{invalidcodemsg}}</p>
+            <button class="main-btn mt-2 d-block ms-auto" type="submit" [disabled]=" verify.get('resetCode')?.value == ''">Verify <i *ngIf="verifyLoad" class="fa-solid fa-spinner fa-spin-pulse"></i></button>
+        </form>
+        <form action="" [formGroup]="reset" class="mt-3" [ngClass]="{'reshow':showform2 == true,'third-form':showform2 == false}" (ngSubmit)="resetPassword()">
+         <label for="email2">Enter your email :</label>   
+        <input type="text" name="" id="email2" formControlName="email" class="form-control mt-3">
+        <p class="text-danger" *ngIf="reset.get('email')?.getError('email')">Enter a valid email</p>
+         <label for="pass2" class="mt-2">Enter new password :</label>   
+        <input type="password" name="" id="pass2" formControlName="newPassword" class="form-control mt-3">
+        <p class="text-danger mt-1" *ngIf="reset.get('newPassword')?.getError('pattern')">Enter a valid password</p>
+        <p class="text-success mt-1" *ngIf="updated">Password is updated</p>
+        <button class="d-block ms-auto main-btn mt-2" type="submit" [disabled]="reset.get('email')?.value =='' || reset.get('newPassword')?.value ==''">Reset <i *ngIf="resetLoad"  class="fa-solid fa-spinner fa-spin-pulse"></i></button>
+    </form>
+        </div>
+        <div class="modal-footer">
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

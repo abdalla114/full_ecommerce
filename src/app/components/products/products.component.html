@@ -1,0 +1,45 @@
+<div class="container-fluid pt-5">
+  <input type="text" class="form-control w-75 mx-auto mt-5 border-2 border-success" placeholder="search..." [(ngModel)]="search">
+    <div class="row g-4 position-relative mt-3">
+        <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let item of proData|searchPipe:search|paginate: { id: 'foo',
+        itemsPerPage: pageItems,
+        currentPage: currentPage,
+        totalItems: total }">
+          <div class="product p-2" style="cursor: pointer;" [routerLink]="['/details',item._id]">
+            <div class="d-flex justify-content-end heart"><i *ngIf="wishListData.includes(item._id)==false" class="fa-regular fa-heart fa-xl" (click)="handleBtn($event);addtoWishList(item._id);checkExist(item._id)"></i></div>
+            <div class="d-flex justify-content-end heart"><i *ngIf="wishListData.includes(item._id) == true" class="fa-solid text-danger fa-heart fa-xl" (click)="handleBtn($event);addtoWishList(item._id);checkExist(item._id)"></i></div>
+              <img [src]="item.imageCover" class="w-100" alt="" [title]="item.title">
+              <h4 class="imp-text">{{item.category.name}}</h4>
+              <h5 class="h6 fw-semibold">{{item.title.split(' ').slice(0,2).join(' ')}}</h5>
+              <div class="raing d-flex justify-content-between">
+                  <span class="fw-semibold">{{item.price}} EGP</span>
+                  <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-star rating-color"></i>
+                      <span class="text-muted">{{item.ratingsAverage}}</span>
+                      <!-- addtoWishList(item._id) -->
+                  </div>
+              </div>
+              <button class="main-btn w-100 mt-2" (click)="handleBtn($event);addtoCart(item._id,addBtn);"  #addBtn>Add to Card <i class="fa-solid fa-cart-plus"></i></button>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="d-flex justify-content-center mt-3">
+    <pagination-controls  id="foo"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="total"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+  <div class="position-fixed top-0 start-0 bottom-0 end-0 fixed-layer d-flex justify-content-center align-items-center flex-column" *ngIf="loading">
+    <div class="layer-img"><img src="./assets/freshcart-logo.svg" alt=""></div>
+    <div class="loader mt-5"></div>
+  </div>

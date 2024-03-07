@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import 'ngx-toastr/toastr';
+
+
+// tailwind
+
+
+
+  $bgColor:#0aad0a;
+  $lightBgColor:#f0f3f2;
+  $shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
+  $fontFamily:'Encode Sans Expanded', sans-serif;
+  $ratingColor:#ffc908;
+  $main-transition:.8s;
+  body{
+    font-family: $fontFamily;
+    }
+    .product{
+        border-radius: 5px;
+        border: solid 1px $bgColor;
+        overflow: hidden;
+        transition: all .7s;
+    }
+    .product:hover{
+        box-shadow: 0 0 10px #11bd1168;
+    }
+    input:focus{
+        box-shadow: 0px 0px 10px 2px #11bd1168 !important;
+    }
+    .cursor-pointer{
+        cursor: pointer;
+    }
+.imp-text{
+    color: $bgColor;
+}
+.rating-color{
+    color: $ratingColor;
+}
+i{
+    cursor: pointer;
+}
+.orders{
+    transition: all .7s;
+    &:hover{
+        background-color: $lightBgColor;
+        transform: scale(1.03);
+    }
+}
+
+.main-btn{
+    background-color: $bgColor;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: unset;
+    cursor: pointer;
+    &:disabled{
+        background-color: #0aad0a8c;
+        color: #ffffffb8;
+        cursor: not-allowed;
+    }
+}
+.close-btn{
+    background-color: #6C757D;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: unset;
+    cursor: pointer;
+    &:disabled{
+        background-color: #6c757d7f;
+        color: #ffffffb8;
+        cursor: not-allowed;
+    }
+}
+.delete-btn{
+    background-color: rgb(220,53,69);
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: unset;
+    cursor: pointer;
+    &:disabled{
+        background-color: rgba(220, 53, 70, 0.633);
+        color: #ffffffb8;
+        cursor: not-allowed;
+    }
+}
+.activ-link{
+ background-color: $bgColor !important;
+ color: #fff !important;
+ border-radius: 5px;
+}
+.text-main{
+    color: $bgColor;
+}
+.bg-acc{
+    background-color: $bgColor !important;
+    color:white !important ;
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1.154;
+    position: relative;
+    background: conic-gradient(from 120deg at 50% 64%,#0000, #25b09b 1deg 120deg,#0000 121deg);
+    animation: l27-0 1.5s infinite cubic-bezier(0.3,1,0,1);
+  }
+  .loader:before,
+  .loader:after {
+    content:'';
+    position: absolute;
+    inset:0;
+    background:inherit;
+    transform-origin: 50% 66%;
+    animation: l27-1 1.5s infinite;
+  }
+  .loader:after {
+    --s:-1;
+  }
+  @keyframes l27-0 {
+     0%,30%      {transform: rotate(0)}
+     70%         {transform: rotate(120deg)}
+     70.01%,100% {transform: rotate(360deg)}
+  }
+  @keyframes l27-1 {
+     0%      {transform: rotate(calc(var(--s,1)*120deg)) translate(0)}
+     30%,70% {transform: rotate(calc(var(--s,1)*120deg)) translate(calc(var(--s,1)*-5px),10px)}
+     100%    {transform: rotate(calc(var(--s,1)*120deg)) translate(0)}
+  }
+.bg-main{
+    background-color: $lightBgColor;
+}
+.font-sm{
+    font-size: 12px;
+}
+.fixed-layer{
+    z-index: 999999999;
+    background-color: rgba(0, 0, 0, 0.301);
+}
+.layer-img{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.ngx-pagination .current {
+    background-color: #0aad0a !important;
+    color: white !important;
+}
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
+// @import 'tailwindcss/utilities';

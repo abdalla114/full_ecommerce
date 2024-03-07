@@ -1,0 +1,32 @@
+
+<section class="pt-5">
+    <form action="" [formGroup]="checkForm" class="w-50 mx-auto bg-main p-4 mt-5 rounded-3 form" (ngSubmit)="checkOut()">
+        <h2>CheckOut Details :</h2>
+        <div>
+            <label for="details">Details :</label>
+            <input type="text" id="details" class="form-control mt-2" formControlName="details">
+        </div>
+        <div>
+            <label for="phone" class="mt-2">Phone :</label>
+            <input type="tel" id="phone" class="form-control mt-2" formControlName="phone">
+        </div>
+        <div>
+            <label for="city" class="mt-2">City:</label>
+            <input type="text" id="city" class="form-control mt-2" formControlName="city">
+        </div>
+        <button class="main-btn mt-3 d-block ms-auto">Check Out <i *ngIf="spin" class="fa-solid fa-spinner fa-spin-pulse"></i></button>
+    </form>
+</section>
+
+
+
+
+
+
+
+
+
+<div class="position-fixed top-0 start-0 bottom-0 end-0 fixed-layer d-flex justify-content-center align-items-center flex-column" *ngIf="loading">
+    <div class="layer-img"><img src="./assets/freshcart-logo.svg" alt=""></div>
+    <div class="loader mt-5"></div>
+  </div>

@@ -1,0 +1,23 @@
+.width{
+width: 90%;
+}
+.forget-btn:hover #forget{
+ text-decoration: underline  ;
+}
+#forget{
+  transition: all 1s !important;
+}
+.third-form,.second-form{
+    transform: translateY(500%);
+}
+
+.reshow{
+    transform: translateY(0) !important;
+    transition: transform 2s;
+}
+.eye-open{
+  inset-inline-end: 5px;
+  &:focus{
+    border: unset;
+  }
+}

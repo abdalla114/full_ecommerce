@@ -1,0 +1,30 @@
+<section class="pt-5 mt-4">
+    <div class="container-fluid">
+        <div class="row g-3">
+            <div class="col-md-2"  *ngFor="let item of brands | paginate: { id: 'foo',
+            itemsPerPage: pageSize,
+            currentPage: p,
+            totalItems: total }" >
+                 <div (click)="getImageSrc(item.image);show=true" class="brand rounded-3 cursor-pointer" [routerLink]="['/probrand',item._id]">
+                     <img [src]="item.image" class="w-100" alt="" >
+                 </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls class="mt-3 d-flex justify-content-center"  id="foo"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="total"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</section>
+<!-- <div class="layer position-fixed top-0 left-0 h-100 w-100 d-flex justify-content-center align-items-center" *ngIf="show" (click)="show =false">
+    <div><img [src]="source" alt="" class="rounded-2" (click)="stop($event)"></div>
+</div> -->

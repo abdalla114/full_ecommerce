@@ -1,0 +1,11 @@
+.layer{
+    z-index: 99999;
+    background-color: rgba(0, 0, 0, 0.399);
+}
+.brand{
+     transition: all .7s;
+     border:solid 4px transparent;
+    &:hover{
+        border:solid 4px #11bd1168;
+    }
+}

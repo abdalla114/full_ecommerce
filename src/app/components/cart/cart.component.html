@@ -1,0 +1,35 @@
+<div class="container">
+    <section class="pt-5 w-75 mx-auto mt-5" *ngIf="cartProducts.length > 0 ;else name">
+       <section class="bg-main p-3 shadow rounded-2">
+        <div><button class="btn btn-warning text-white" (click)="clearAll(clearall)" #clearall>Clear All the Cart</button></div>
+        <h1 class="text-center">Shop Cart</h1>
+        <p class="text-success fw-semibold">Total Price : {{cartresp.totalCartPrice}} EGP</p>
+        <div class="row align-items-center border-bottom p-2 g-2 " *ngFor="let item of cartProducts">
+            <div class="col-md-2"><div><img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title" [title]="item.product.title"></div></div>
+            <div class="col-md-10">
+                <div class="d-flex justify-between align-items-center">
+                    <div class="w-50">
+                        <h5>{{item.product.title.split(' ').slice(0,2).join(' ')}}</h5>
+                        <p class="text-success">price : {{item.price}}</p>
+                        <button class="btn btn-danger" #rem (click)="deleteItem(item.product._id,rem)"><i class="fa-solid fa-trash-can text-white"></i> Remove</button>
+                    </div>
+                    <div class="counter d-flex align-items-center justify-content-end w-50">
+                        <button #minus class="btn btn-sm border-danger" (click)="changeCount(item.count-1,item.product._id,minus,plus)
+                       "><i class="fa-solid fa-minus text-danger"></i></button>
+                        <span class="mx-2">{{item.count}}</span>
+                        <button #plus class="btn btn-sm border-success" (click)="changeCount(item.count+1,item.product._id,minus,plus)"><i class="fa-solid fa-plus text-success"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn-primary mt-3 btn text-white d-block mx-auto" [routerLink]="['/payment',cartresp._id]">Payment <i class="fa-brands fa-cc-visa"></i></button>
+       </section>
+    </section>
+</div>
+<!-- <div class="position-fixed flex-column top-0 start-0 bottom-0 end-0 fixed-layer d-flex justify-content-center align-items-center" *ngIf="loading">
+    <div class="layer-img"><img src="./assets/freshcart-logo.svg" alt=""></div>
+    <div class="loader mt-5"></div>
+  </div> -->
+<ng-template #name>
+    <h1 class="text-center text-danger">Nothing in the cart</h1>
+</ng-template>

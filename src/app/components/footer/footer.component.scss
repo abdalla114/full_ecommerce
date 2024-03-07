@@ -1,0 +1,72 @@
+@media screen and (max-width:994.5px) {
+    .main-btn{
+      font-size: .95rem;
+    }
+}
+@media screen and (max-width:957.5px) {
+    .main-btn{
+      font-size: .9rem;
+    }
+}
+@media screen and (max-width:920.5px) {
+    .main-btn{
+      font-size: .85rem;
+    }
+}
+@media screen and (max-width:882.5px) {
+    .main-btn{
+      font-size: .8rem;
+    }
+}
+@media screen and (max-width:846px) {
+    .main-btn{
+      font-size: .75rem;
+    }
+}
+@media screen and (max-width:808.5px) {
+    .main-btn{
+      font-size: .7rem;
+    }
+}
+@media screen and (max-width:771.5px) {
+    .main-btn{
+      font-size: .65rem;
+      font-weight: 600;
+    }
+}
+@media screen and (max-width:771.5px) {
+    .main-btn{
+      font-size: .6rem;
+      font-weight: 600;
+    }
+}
+@media screen and (max-width:696.5px) {
+    .main-btn{
+      font-size: .55rem;
+      font-weight: 600;
+    }
+}
+@media screen and (max-width:924.5px) {
+    .footOfFooter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .inners{
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+@media screen and (max-width:575.5px) {
+    .main-btn{
+      font-size: 1rem;
+      font-weight: 400;
+    }
+}
+.payments{
+    width: 8%;
+}
+.payment{
+    width: 20%;
+}

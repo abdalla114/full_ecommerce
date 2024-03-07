@@ -1,0 +1,31 @@
+button{
+    transform: translateY(150%);
+    transition: all .7s;
+}
+
+.product{
+    position: relative;
+    .heart{
+        top: 15px;
+        inset-inline-end: 5px;
+        transform: translateX(120%);
+        transition: all .6s; 
+        position: absolute;
+        cursor: pointer;
+    }
+}
+.product:hover .heart{
+    transform: translateX(0);
+}
+.product:hover button{
+    transform: translate(0);
+}
+.fixed-layer{
+    z-index: 999999999;
+    background-color: rgba(0, 0, 0, 0.301);
+}
+.layer-img{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

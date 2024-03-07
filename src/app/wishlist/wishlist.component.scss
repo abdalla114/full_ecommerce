@@ -1,0 +1,17 @@
+.product{
+    position: relative;
+    .heart{
+        top: 15px;
+        inset-inline-end: 5px;
+        transform: translateX(120%);
+        transition: all .6s; 
+        position: absolute;
+        cursor: pointer;
+    }
+    &:hover .heart{
+        transform: translateX(0);
+    }
+}
+// .product:hover .heart{
+//     transform: translateX(0);
+// }

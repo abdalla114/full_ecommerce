@@ -1,0 +1,78 @@
+<section class="pt-5" *ngIf="data.length > 0; else name">
+  <div class="accordion mt-5 container" id="accordionExample">
+    <div class="accordion-item mt-2" *ngFor="let item of data; let i = index">
+      <h2 class="accordion-header">
+        <button
+          class="accordion-button shadow"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + i"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          <div class="d-flex flex-column">
+            <span class="fw-semibold h2">Order {{ i + 1 }}</span>
+            <span class="pb0 my-2 text-capitalize"
+              ><span class="fw-semibold">Ordered by: </span
+              >{{ item.shippingAddress.details }}</span
+            >
+            <span class="pb0"
+              ><span class="fw-semibold">Phone: </span
+              >{{ item.shippingAddress.phone }}</span
+            >
+            <span class="pb0 my-2"
+              ><span class="fw-semibold">Total Price: </span
+              >{{ item.totalOrderPrice }} EGP</span
+            >
+            <span class="pb0 mb-2"
+              ><span class="fw-semibold">City: </span
+              >{{ item.shippingAddress.city }}</span
+            >
+            <span class="pb0 mb-2"
+              ><span class="fw-semibold">Created At: </span
+              >{{ item.createdAt | date }}</span
+            >
+            <span class="pb0"
+              ><span class="fw-semibold">Paid At: </span
+              >{{ item.paidAt | date }}</span
+            >
+          </div>
+        </button>
+      </h2>
+      <div
+        [id]="'collapse' + i"
+        class="accordion-collapse collapse show overflow-hidden"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <div
+            class="row border-bottom mt-3 align-items-center orders p-3"
+            *ngFor="let item1 of item.cartItems"
+          >
+            <div class="col-md-2">
+              <img [src]="item1.product.imageCover" class="w-100" alt="" />
+            </div>
+            <div class="col-md-10">
+              <div>
+                <p class="fw-semibold">{{ item1.product.category.name }}</p>
+                <p>{{ item1.product.title }}</p>
+                <p>Price : {{ item1.price }} EGP</p>
+                <div>
+                  <i
+                    class="fa-solid fa-star"
+                    [class.rating-color]="item1.product.ratingsAverage >= num"
+                    *ngFor="let num of [1, 2, 3, 4, 5]"
+                  ></i>
+                  <span>{{ item1.product.ratingsAverage }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<ng-template #name>
+  <h2>No orders yet...</h2>
+</ng-template>

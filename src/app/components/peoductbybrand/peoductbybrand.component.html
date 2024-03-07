@@ -1,0 +1,25 @@
+<div class="container-fluid pt-5" *ngIf="products.length>0 ; else name">
+    <div class="row g-4 position-relative mt-3 justify-content-center">
+        <div class="col-lg-2 col-md-4 col-sm-12" *ngFor="let item of products">
+          <div class="product p-2" style="cursor: pointer;" [routerLink]="['/details',item._id]">
+            <div class="d-flex justify-content-end heart"><i  class="fa-regular fa-heart fa-xl" (click)="handleBtn($event);addtoWishList(item._id);checkExist(item._id)" *ngIf="wishList.includes(item._id)==false"></i></div>
+            <div class="d-flex justify-content-end heart"><i *ngIf="wishList.includes(item._id)==true"  class="fa-solid text-danger fa-heart fa-xl" (click)="handleBtn($event);delFromList(item._id);checkExist(item._id)"></i></div>
+              <img [src]="item.imageCover" class="w-100" alt="" [title]="item.title">
+              <h4 class="imp-text">{{item.category.name}}</h4>
+              <h5 class="h6 fw-semibold">{{item.title.split(' ').slice(0,2).join(' ')}}</h5>
+              <div class="raing d-flex justify-content-between">
+                  <span class="fw-semibold">{{item.price}} EGP</span>
+                  <div class="d-flex align-items-center">
+                      <i class="fa-solid fa-star rating-color"></i>
+                      <span class="text-muted">{{item.ratingsAverage}}</span>
+                      <!-- addtoWishList(item._id) -->
+                  </div>
+              </div>
+              <button class="main-btn w-100 mt-2" (click)="handleBtn($event);addtoCart(item._id,addBtn);"  #addBtn>Add to Card <i class="fa-solid fa-cart-plus"></i></button>
+          </div>
+        </div>
+      </div>
+</div>
+<ng-template #name>
+    <h1 class="text-center">Page is Empty...</h1>
+</ng-template>

@@ -1,0 +1,43 @@
+nav{
+    transition: padding 1s;
+}
+.dropdown-toggle{
+    border: unset;
+}
+.effect{
+    transition: all .7s;
+    &:hover{
+        transform: translateX(5%);
+
+    }
+}
+.reshow{
+    transform: translateY(0) !important;
+    transition: transform 2s;
+}
+.fa-eye{
+    inset-inline-end: 5px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+.fa-eye-slash{
+    inset-inline-end: 5px;
+    transform: translateY(-50%);
+    top: 50%;
+}
+@media screen and (max-width:575.5px) {
+    ul li{
+        text-align: center;
+    }
+    ul{
+        margin-top: 1rem ;
+    }
+    .nav-icon{
+        display: flex;
+        margin-bottom: 1rem;
+    }
+}
+// .fa-heart{
+//    
+//     inset-inline-start: 50%;
+// }

@@ -1,0 +1,209 @@
+<nav
+         #navBar   class="navbar navbar-expand-sm navbar-light bg-light fixed-top"
+>
+    <div class="container-fluid">
+        <img src="../../../assets/freshcart-logo.svg" routerLink="/home" class="me-3 cursor-pointer" alt="">
+        <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" aria-current="page" routerLink="/home" routerLinkActive="activ-link">Home
+                        </a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/products" href="#" routerLinkActive="activ-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/category" href="#" routerLinkActive="activ-link">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/brands" href="#" routerLinkActive="activ-link">Brands</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+             <div class="nav-icon d-flex">
+              <li class="nav-item me-3">
+                <i class="fa-brands fa-instagram"></i>
+            </li>
+            <li class="nav-item me-3">
+                <i class="fa-brands fa-facebook"></i>
+            </li>
+            <li class="nav-item me-3">
+                <i class="fa-brands fa-tiktok"></i>
+            </li>
+            <li class="nav-item me-3">
+                <i class="fa-brands fa-twitter"></i>
+            </li>
+            <li class="nav-item me-3">
+                <i class="fa-brands fa-linkedin"></i>
+            </li>
+            <li class="nav-item me-3">
+                <i class="fa-brands fa-youtube"></i>
+            </li>
+             </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link position-relative" href="#" routerLink="/cart" routerLinkActive=""><i class="fa-solid fa-cart-shopping fa-2xl"></i>
+               <span class=" position-absolute top-0 end-0 bg-success badge">{{items}}</span>
+                </a>
+            </li>
+            <li class="nav-item mx-3 position-relative" role="button">
+                <a class="position-relative nav-link"><i title="WishList" class="fa-solid fa-clipboard-list fa-2xl text-black" routerLink="/wishlist"></i>
+                    <span class="badge bg-danger top-0 start-50 position-absolute small">{{count}}</span>
+                </a>
+                <!-- <i class="fa-solid fa-heart position-absolute text-danger  top-0 end-"></i> -->
+
+            </li>
+        </div>
+        <li class="me-3"><div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gears fa-xl"></i>
+            </button>
+            <ul class="dropdown-menu overflow-hidden">
+                <li><button class="dropdown-item effect" type="button" data-bs-toggle="modal" data-bs-target="#emailModal">Update Name <i class="fa-solid fa-user-large"></i></button></li>
+                <li><button class="dropdown-item effect" type="button" data-bs-toggle="modal" data-bs-target="#mailModal">Update Email <i class="fa-solid fa-envelope"></i></button></li>
+                <li><button class="dropdown-item effect" type="button" data-bs-toggle="modal" data-bs-target="#passModal">Update Password <i class="fa-solid fa-key"></i></button></li>
+                <li><button class="dropdown-item effect" type="button" data-bs-toggle="modal" data-bs-target="#phoneModal">Update Phone <i class="fa-solid fa-mobile-screen-button"></i></button></li>
+                <li><button class="dropdown-item effect" routerLink="/allorders" type="button">All Orders <i class="fa-solid fa-bag-shopping"></i></button></li>
+                <li><button class="dropdown-item effect" (click)="logOut()" type="button">Log Out <i class="fa-solid fa-arrow-right-from-bracket"></i></button></li>
+            </ul>
+          </div>
+        </li>
+                <li class="nav-item me-3" role="button">Hello, <span class="fw-semibold"> {{userName}}</span></li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Name Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form action="" [formGroup]="updatename" (ngSubmit)="updateName()">
+            <input type="text" [(ngModel)]="name" formControlName="name" class="form-control" placeholder="Enter the new Name ...">
+            <div class="alert alert-danger mt-2" *ngIf="updatename.get('name')?.errors && (updatename.get('name')?.touched||updatename.get('name')?.value?.length>0)">
+                <p *ngIf="updatename.get('name')?.getError('required')">Name Is Required</p>
+                <p *ngIf="updatename.get('name')?.getError('minlength')">atleast 3 charachters</p>
+                <p *ngIf="updatename.get('name')?.getError('maxlength')">the maximum is 10 charachters</p>
+            </div>
+            <button type="submit" class=" main-btn mt-2 d-block ms-auto" data-bs-dismiss="modal">Save changes <i *ngIf="load" class="fa-solid fa-spinner fa-spin-pulse"></i></button>
+         </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" >
+    Launch demo modal
+  </button>
+   -->
+  <!-- Modal Email -->
+  <div class="modal fade" id="mailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Email Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" [formGroup]="newMail" (ngSubmit)="updateMail()">
+                <input [(ngModel)]="emailvalue" type="text" class="form-control" formControlName="email" placeholder="Enter the new Email...">
+                <p *ngIf="newMail.get('email')?.getError('email')" class="text-danger mt-2" >Email must be valid</p>
+                <button type="submit" class="main-btn d-block ms-auto mt-3" data-bs-dismiss="modal">Save changes</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" >
+    Launch demo modal
+  </button> -->
+  
+  <!-- PassModal -->
+  <div class="modal fade" id="passModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update password Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" [formGroup]="newpass" (ngSubmit)="updatepass(save)">
+            <label for="current" class="">Current Password :</label>
+            <div class="position-relative">
+                <input  formControlName="currentPassword"  [type]="inputtype(eye)" class="form-control mt-2" id="current">
+                <i (click)="eyetoggle()" class="fa-regular fa-eye position-absolute " *ngIf="eye"></i>
+                <i (click)="eyetoggle()" class="fa-regular fa-eye-slash position-absolute" *ngIf="eye == false "></i>
+            </div>
+           
+            <label for="new" class="mt-2">New Password :</label>
+        <div class="position-relative">
+           <input formControlName="password" class="form-control mt-2" id="new" [type]="inputtype(eye1)">
+           <i (click)="eye1toggle()" class="fa-regular fa-eye position-absolute " *ngIf="eye1"></i>
+           <i (click)="eye1toggle()" class="fa-regular fa-eye-slash position-absolute" *ngIf="eye1 == false "></i>
+        </div>
+            <label for="re" class="mt-2">RePasswored :</label>
+            <div class="position-relative">
+                <input formControlName="rePassword"  [type]="inputtype(eye2)" class="form-control mt-2" id="re">
+                <i (click)="eye2toggle()" class="fa-regular fa-eye position-absolute " *ngIf="eye2"></i>
+                <i (click)="eye2toggle()" class="fa-regular fa-eye-slash position-absolute" *ngIf="eye2 == false "></i>
+            </div>
+            <p *ngIf="newpass.get('rePassword')?.errors" class="text-danger mt-2">password not match</p>
+            <button type="submit" class="main-btn d-block ms-auto mt-3" data-bs-dismiss="modal" #save>Save changes</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <!-- <div class="alert alert-danger w-100" *ngIf="responseError!=''"><p class="text-center">{{responseError}}</p></div> -->
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" >
+  Launch demo modal
+</button> -->
+
+<!-- PhoneModal -->
+<div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action=""[formGroup]="newPhone" (ngSubmit)="updatePhone">
+          <input type="tel" placeholder="set your new phone number..." class="form-control" formControlName="phone">
+          <p class="mt-2 text-danger" *ngIf="newPhone.get('phone')?.getError('pattern')">Enter an Egyptian Phone Number</p>
+          <button type="submit" class="main-btn mt-3 d-block ms-auto" data-bs-dismiss="modal">Save Changes</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
